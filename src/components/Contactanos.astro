@@ -1,0 +1,34 @@
+
+
+---
+const socialLinks = [
+  {
+    name: 'WhatsApp',
+    href: 'https://wa.me/50688473487', // Replace YOUR_NUMBER with your WhatsApp number
+    icon: 'whatsapp.svg' // Assuming the SVG file is in the public/images directory
+  },
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/punto.coma.cr', // Replace YOUR_USERNAME with your Instagram username
+    icon: 'instagram.svg' // Assuming the SVG file is in the public/images directory
+  },
+  {
+    name: 'Facebook',
+    href: 'https://www.facebook.com/punto.coma.cr', // Replace YOUR_PAGE with your Facebook page
+    icon: 'facebook.svg' // Assuming the SVG file is in the public/images directory
+  }
+];
+---
+<section id="contactanos">
+    <main>
+        <h3 class="flex justify-center text-center font-bold text-4xl p-7 bg-[#f46036] text-white">Como Comprar y Contactar</h3>
+        <p class="bg-[#f46036] text-center justify-center text-white p-4 text-prettier"> En la apliacion que desees, escribenos el/los articlos que desees comprar y (si deseas) los parches para cada uno. ¡Te responderemos con una muestra para que confirmes la compra! Toca el logo de la apliacion para encontrarnos en esas redes.</p>
+    </main>
+</section>
+<div class="bg-[#f46036] text-white p-6 flex justify-center space-x-6 items-center">
+  {socialLinks.map(link => (
+    <a href={link.href} target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform duration-300 ease-in-out">
+      <img src={`/images/${link.icon}`} alt={link.name} class="h-12 w-12" />
+    </a>
+  ))}
+</div>
