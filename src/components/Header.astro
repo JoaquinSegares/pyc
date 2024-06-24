@@ -1,9 +1,14 @@
 ---
 const navItems = [
-  { name: 'Artículos', href: '#articulos' },
+  { name: 'Artículos', href: '#', subItems: [ // Correct name: subItems
+      { name: 'Classic Bags', href: '#ClassicBags' },
+      { name: 'Big Bags', href: '#BigBags' },
+      { name: 'Cool Stuff', href: '#CoolStuff' }
+    ]
+  },
   { name: 'Parches', href: '#parches' },
   { name: 'Precios', href: '#precios' },
-  { name: 'Compra y Contacto', href: '#contactanos' },
+  { name: 'Contáctanos', href: '#contactanos' }
 ];
 ---
 
@@ -11,6 +16,7 @@ const navItems = [
   <!-- Include the JavaScript files -->
   <script src="/scripts/menu-toggle.js" defer></script>
   <script src="/scripts/smooth-scroll.js" defer></script>
+  <script src="/scripts/dropdown.js" defer></script> <!-- Add this script -->
   <style>
     /* Apply smooth scrolling to the whole document */
     html {
@@ -25,11 +31,25 @@ const navItems = [
     <img class="h-12" src="src/images/logo_p&c blanco.png" alt="Logo">
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex space-x-4 items-center text-sm md:text-base">
-      {navItems.map(item => (
-        <a href={item.href} class="hover:scale-110 hover:bg-gray-100 hover:text-[#ff8fab] transition-transform duration-300 ease-in-out px-2 py-1 rounded font-bold">
-          {item.name}
-        </a>
+    <nav class="hidden md:flex space-x-4 items-center text-sm md:text-base relative">
+      {navItems.map((item) => (
+        <div class="relative group">
+          <a
+            href={item.href}
+            class={`hover:scale-110 hover:bg-gray-100 hover:text-[#ff8fab] transition-transform duration-300 ease-in-out px-2 py-1 rounded font-bold ${item.subItems ? 'cursor-pointer' : ''}`}
+          >
+            {item.name}
+          </a>
+          {item.subItems && (
+            <div class="absolute left-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden group-hover:block">
+              {item.subItems.map((subitem) => (
+                <a href={subitem.href} class="block px-4 py-2 hover:bg-gray-200">
+                  {subitem.name}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
       ))}
     </nav>
 
@@ -44,11 +64,22 @@ const navItems = [
   <!-- Mobile Navigation Menu -->
   <nav id="nav-menu" class="md:hidden hidden bg-[#ff8fab] py-2">
     <ul class="flex flex-col space-y-2 items-center">
-      {navItems.map(item => (
-        <li>
+      {navItems.map((item) => (
+        <li class="relative">
           <a href={item.href} class="block hover:scale-110 hover:bg-gray-100 hover:text-[#ff8fab] transition-transform duration-300 ease-in-out px-4 py-2 rounded font-bold">
             {item.name}
           </a>
+          {item.subItems && (
+            <ul class="hidden">
+              {item.subItems.map((subitem) => (
+                <li>
+                  <a href={subitem.href} class="block px-4 py-2 hover:bg-gray-200">
+                    {subitem.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
         </li>
       ))}
     </ul>
