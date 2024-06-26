@@ -4,10 +4,12 @@ import Header from '../components/Header.astro';
 import Articulos from '../components/Articulos.astro';
 import Precios from '../components/Precios.astro';
 import Contactanos from '../components/Contactanos.astro'
+import ClassicBags from '../components/ClassicBags.astro';
 
 ---
 
 <html>
+
 	<style>
 		html {
   scroll-behavior: smooth;
@@ -16,17 +18,24 @@ import Contactanos from '../components/Contactanos.astro'
 <Layout title="Punto y Coma">
 	<main>
 		<Header/>
-		<div class="pt-[200px] pb-[200px]  sm:px-[170px] sm:pb-[170px] flex justify-center items-center">
+		<div class="pt-[100px] pb-[50px]  sm:px-[170px] sm:pb-[50px] flex justify-center items-center">
 			<img height="700" width="700" src="public/images/coverphotp.png">
 		  </div>
 	</main>
 	<Articulos id="articulos"/>
+	<ClassicBags id="classicbags"/>
 	<Precios id="precios"/>
 	<Contactanos id="contactanos"/>
 
-	<div class="flex justify-center text-center text-3xl font-bold p-7">
-		<h3>©2024 Punto & Coma</h3>
-	</div>
+	<footer class=" text-black py-4">
+		<div class="flex container mx-auto justify-between items-center text-1xl font-bold p-7">
+		  <h3 class="left-corner">©2024 Punto & Coma</h3>
+		  
+		  <div class="right-corner">
+			<img height="50px" width="50px" src="public/images/logo_simplificado negro.png" alt="Logo Negro">
+		  </div>
+		</div>
+	  </footer>
 </Layout>
 </html>
 
